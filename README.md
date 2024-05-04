@@ -8,7 +8,7 @@
 ### password_repoディレクトリにて、password_manager.shを実行することで、パスワードを保存することができる。
 
 ```
-    $ bash main.sh
+    $ bash password_manager.sh
 ```
 
 ---
@@ -19,4 +19,12 @@
 └── password_manager.sh
 ```
 ---
+
+※　
+    パスワードの保存ファイル名はpassword.txtで、自動で作成されます。
+    パスワードは暗号化されて保存されています。
+    
+---
+
+
 
