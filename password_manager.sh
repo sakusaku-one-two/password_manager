@@ -108,7 +108,7 @@ function main(){
         input_="${arry_[*]}"
         
         if [ "$input_" = "Exit" ]; then
-            echo "Thank you!"
+            echo "Thank you❗"
             exit
         elif [ "$input_" = "Add Password" ]; then
             regist_password
