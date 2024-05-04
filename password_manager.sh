@@ -47,3 +47,45 @@ function regist_password(){
 
 ##################################################################################################
 
+#サービス名から情報を取り出す
+function show_password(){
+
+    
+    read -p "サービス名を入力してください: "  service_name
+
+
+    #サービス名の有無の記録フラグ
+    exists_flag=0
+
+
+    while read record
+    do
+
+        #暗号化された各行を復号化して変数に代入
+        decript_record_origin=$(echo "$record" | openssl enc -d -aes-256-cbc -base64 -k $ENCRIPT_PASSWORD -pbkdf2 -iter $ITER_COUNT)
+        #復号化された行を　”：”　に基づいて配列に分割
+        IFS=: read -r -a decript_record_arry <<< "$decript_record_origin"
+
+        #0番目がサービス名
+        if [ ${decript_record_arry[0]} = "$service_name" ] ; then
+                
+            echo サービス名:${decript_record_arry[0]}
+            echo ユーザー名:${decript_record_arry[1]}
+            echo パスワード:${decript_record_arry[2]}
+            
+                
+            exists_flag=1
+        fi
+
+    done < password.txt
+
+    if [ $exists_flag -eq 0 ] ; then
+        echo "そのサービスは登録されていません。"
+    fi
+
+}
+
+
+
+
+##################################################################################################
