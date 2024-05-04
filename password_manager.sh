@@ -89,3 +89,47 @@ function show_password(){
 
 
 ##################################################################################################
+
+
+
+
+#エントリーポイント
+function main(){
+
+    echo "パスワードマネージャーへようこそ!"
+
+
+    #空白で分割するよう設定　（念の為）
+    IFS=' '
+    
+    while true
+    do
+        read -p "次の選択肢から入力してください。(Add Password/Get Password/Exit) :" -a arry_
+        input_="${arry_[*]}"
+        
+        if [ "$input_" = "Exit" ]; then
+            echo "Thank you!"
+            exit
+        elif [ "$input_" = "Add Password" ]; then
+            regist_password
+        elif [ "$input_" = "Get Password" ]; then
+            show_password
+        else
+            echo "再入力してください。"
+
+        fi
+
+    done    
+        
+}
+
+
+
+##################################################################################################
+
+
+
+#実行ポイント
+main
+
+
